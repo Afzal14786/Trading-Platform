@@ -1,0 +1,459 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* // anchor tafs */
+
+a {
+  color : sky;
+  text-decoration : none;
+}
+
+a:hover {
+  color : #424242;
+}
+
+.googlePlayStore .googlePlayStore:hover {
+  opacity: 0.8;
+}
+
+.open-account-btn:hover {
+  background-color: #000 !important;
+  color : white !important;
+  cursor: pointer !important;
+}
+
+.hover-text-black:hover {
+  color: #000 !important; /* Bootstrap black or override existing color */
+}
+
+.form-col {
+  width: 80%;
+  margin-left : 2rem;
+}
+
+.form-btn {
+  padding-right: 4rem;
+  padding-left: 4rem;
+}
+
+.form-btn:hover {
+  background-color: #000;
+  font-weight: 500;
+}
+
+.terms-link {
+  color : rgb(24, 88, 206);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.acop-steps-container {
+  border-bottom: 1px solid #ddd;
+}
+
+.steps {
+   display: inline-block;
+   border: 1px solid #ddd;
+   border-radius: 50%;
+   width : 28px;
+   height : 28px;
+}
+
+.acop-steps-text{
+  display: inline-block;
+  font-size: 20px;
+  font-weight : 500;
+  margin-left : 15px;
+}
+
+.acop-type-card {
+   display : inline-block;
+   border : 1px solid #e1e1e1;
+   border-radius : 5px;
+   padding : 30px;
+   position : relative;
+}
+
+.account-card {
+  height : 150px;
+  width: 100px !important;
+  border : 1px solid #e0e0e0;
+}
+
+.account-card a {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.anchor-card .account-icon img {
+  margin-top: 15px;
+  padding: 5px;
+  background-color: #eff6ff;
+  margin-left: -46px;
+   border-radius: 50%;
+}
+
+.account-icon h3 {
+    margin-left: 25px;
+  color : #444;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.anchor-card p {
+  margin-left: 28px;
+  font-weight: 500;
+}
+
+.account-card:hover {
+    border : 1px solid blue;
+}
+
+/* Navnar */
+
+/* .nav .nav:hover {
+  color : rgb(46, 146, 186);
+} */
+
+
+/* ---------- Tabs Styling ---------- */
+
+.tabs {
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 30px;
+}
+
+.tabs .tab {
+  display: block;
+  padding: 6px 15px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #387ed1;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px 3px 0 0;
+}
+
+.tabs .tab.sel {
+  color: #666;
+  border-bottom: 2px solid #387ed1;
+  font-weight: 500;
+}
+
+.tabs .tab:hover {
+  color: #666;
+}
+
+/* ---------- Container Styling ---------- */
+
+.container {
+  position: relative;
+  width: 1100px;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.section {
+  overflow: hidden;
+  clear: both;
+  border-radius: 3px;
+  display: block;
+}
+
+/* ---------- Table Styling ---------- */
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+thead tr {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+
+table th,
+table td {
+  color: #424242;
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  word-wrap: break-word;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+/* First column alignment (row titles) */
+table td:first-child,
+table th:first-child {
+  padding-left: 15px !important;
+  font-weight: 600;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* Styling for the charges head column */
+.table-container .charges-head {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Alternate row background for better readability */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* charges explaind CSS in pricing page */
+.charges-explained-heading {
+  color : #424242;
+  font-weight:lighter;
+  font-size: 17px;
+}
+
+.charges-explained-description {
+  color : #424242;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.account-opening-charges {
+  color : #424242;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+/* Account apening table */
+.account-opeing-table table thead tr th {
+  font-weight: 500 !important;
+  font-size: medium;
+  color: #424242 !important;
+}
+
+.account-opeing-table table tbody td {
+  font-weight: 400 !important;
+  font-size: 15px !important;
+}
+
+.account-opeing-table table tbody .free-tag {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4caf50;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+
+.service-charges table thead tr th {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.service-charges table tbody tr td {
+  font-size: .959rem;
+  font-weight: 400;
+}
+
+
+/* Support Page */
+.support-title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.track-link {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.support-subheading {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-top: 3.5rem;
+  padding-left: 10px;
+}
+
+.input-wrapper {
+  position: relative;
+  max-width: 100%;
+  padding : 10px;
+}
+
+.custom-input {
+  width: 100%;
+  padding-right: 40px;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+  pointer-events: none;
+  margin-right: 20px;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  font-size: 1.1rem;
+}
+
+.footer-link:hover {
+  color : #fff !important;
+}
+
+.feature-list {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.feature-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* featured header */
+.featured-header {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight : 500;
+}
+
+.alert-back {
+  position: relative;
+}
+
+.banner-content ol{
+  margin-top: 0;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.banner-content a {
+  color : #fff;
+  text-decoration: underline !important;
+}
+
+/* create ticket */
+.create-ticket-headings {
+  margin-bottom: 1.7rem;
+}
+
+.create-ticket-headings a{
+  color: #252424 !important;
+  font-size: 20px;
+}
+
+
+.create-ticket-headings a:hover {
+  color: #387ed1 !important;
+}
+
+.create-ticket span {
+  display: block;
+  font-size: 14px;
+  margin: 12px 0;
+  font-weight: 400;
+  padding-left: 32px;
+
+}
+
+
+
+/* Hover property in image */
+.image-fade-hover {
+  opacity: 0.8;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.image-fade-hover:hover {
+  opacity: 1;
+}
+
+/* navbar */
+.nav-link:hover {
+    color : rgb(65, 132, 205);
+}
+
+.nav-link {
+  margin-left: 20px;
+}
+
+/* icons */
+
+.icon-first, .icons {
+  font-size : 22px;
+  opacity: 0.7;
+}
+
+.icons {
+  margin-left : 20px;
+}
+
+.icons:hover {
+   color : rgb(29, 29, 90);
+}
+
+/* links in footer */
+
+.link {
+  text-decoration: none;
+}
+
+.links:hover {
+  color : blue;
+}
+
+/* footer font */
+.font {
+  font-size: 11px;
+}
+
+.footer-links {
+   text-decoration: none;
+   font-weight: 600;
+}
+
+.footer-links:hover {
+  color : rgb(53, 52, 52);
+}
+
+.policies-links {
+  text-decoration: none;
+}
+.policies-links {
+    margin-left: 20px;
+}
