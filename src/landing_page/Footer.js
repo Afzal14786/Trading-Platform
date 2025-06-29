@@ -17,7 +17,7 @@ const Footer = () => {
               {/* Support Footer Page */}
               {isSupportPage ? (
                 <>
-                  <div className='col-3'>
+                  <div className='col-3 mt-1'>
                     <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
                     <h4 className="text-muted" style={{marginTop : "1.1rem", fontSize : "1.2rem", fontWeight : "500"}}><i class="fas fa-phone"></i>&nbsp; 080 47181888</h4>
                     <p className ='small mt-3 text-muted'>&copy; 2010 - 2025, Zerodha Broking Ltd. <br/> All rights reserved.</p>
@@ -29,7 +29,7 @@ const Footer = () => {
                 </>
               ): (
                 <>
-                  <div className='col-3'>
+                  <div className='col-3 mt-2'>
                     <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
                     <p className ='small mt-3 text-muted'>&copy; 2010 - 2025, Zerodha Broking Ltd. <br/> All rights reserved.</p>
                     <i class="fab fa-twitter icon-first"></i>
@@ -66,7 +66,7 @@ const Footer = () => {
                 (
                   <>
                     {/* Account */}
-                    <div className='col'>
+                    <div className='col mt-1'>
                       <h3 className='fs-5'>Account</h3>
                       <ul className='list-unstyled mt-3'>
                         <li className='links'><a href='#' className='text-muted link'>Open demat account</a></li>
