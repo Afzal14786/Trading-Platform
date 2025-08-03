@@ -43,7 +43,7 @@ You need to have Node.js and npm installed on your machine.
 1. **Clone the repository:**
 
     ```
-    git clone https://github.com/kajal824/E.COM.git
+    git clone https://github.com/Afzal14786/Trading-Platform.git
     cd your-repo-name
     ```
 2. **Install Frontend Dependencies:** 
