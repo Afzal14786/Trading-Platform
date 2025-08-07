@@ -404,12 +404,45 @@ tbody tr:nth-child(even) {
 }
 
 /* navbar */
+
+.navbar-brand {
+  margin-left: 40px;
+}
+
 .nav-link:hover {
-    color : rgb(65, 132, 205);
+    color: rgb(65, 132, 205);
 }
 
 .nav-link {
   margin-left: 20px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  font-size: 18px;
+}
+
+.navbar-toggler {
+  border: none;
+  margin-left: auto; /* Moves the hamburger to the right */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color : rgb(8, 55, 106);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar-brand img {
+    width: 50%;
+  }
+
+  .navbar-nav {
+    text-align: right; /* Align the menu to the right on mobile */
+  }
 }
 
 /* icons */

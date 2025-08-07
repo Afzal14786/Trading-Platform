@@ -16,67 +16,84 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg border-bottom p-3 sticky-top" style={{backgroundColor : "white"}}>
-        <div className="container">
-          <Link className="navbar-brand" to={"/"}>
-            <img src="media/images/logo.svg" style={{width : "25%"}} alt="Logo" />
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <form className="d-flex" role="search">
-              <ul className="navbar-nav mb-lg-0">
-                <li className="nav-item">
-                  <a className={`nav-link ${activeNav === "open-account" ? "active-nav" : ""}`} href="/open-account" target="_blank">
-                    Signup
-                  </a>
-                </li>
+    <nav className="navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top d-flex justify-content-between align-items-center">
+      <div className="container-fluid">
+        {/* Logo */}
+        <Link className="navbar-brand" to={"/"}>
+          <img src="media/images/logo.svg" style={{ width: "25%" }} alt="Logo" />
+        </Link>
 
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/about"}>
-                    About
-                  </Link>
-                </li>
+        {/* Hamburger menu aligned to the right */}
+        <button
+          className="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/products"}>
-                    Products
-                  </Link>
-                </li>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${activeNav === "open-account" ? "active" : ""}`}
+                to="/open-account"
+                target="_blank"
+              >
+                Signup
+              </Link>
+            </li>
 
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/pricing"}>
-                    Pricing
-                  </Link>
-                </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${activeNav === "about" ? "active" : ""}`}
+                to="/about"
+              >
+                About
+              </Link>
+            </li>
 
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/support"}>
-                    Support
-                  </Link>
-                </li>
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${activeNav === "products" ? "active" : ""}`}
+                to="/products"
+              >
+                Products
+              </Link>
+            </li>
 
-                <li className="nav-item">
-                  <Link className="nav-link" href="#">
-                    <i class="fa fa-bars" aria-hidden="true" />
-                  </Link>
-                </li>
-              </ul>
-            </form>
-          </div>
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${activeNav === "pricing" ? "active" : ""}`}
+                to="/pricing"
+              >
+                Pricing
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${activeNav === "support" ? "active" : ""}`}
+                to="/support"
+              >
+                Support
+              </Link>
+            </li>
+
+            {/* Optional: Add a mobile menu or icon */}
+            <li className="nav-item">
+              <Link className="nav-link" to="#">
+                <i className="fa fa-bars" aria-hidden="true" />
+              </Link>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

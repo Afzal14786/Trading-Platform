@@ -53,9 +53,9 @@ You need to have Node.js and npm installed on your machine.
 
 ### Running the Application  
 
-    npm run start
+    npm run dev
 
-**_The React app will open in your browser at http://localhost:3001._**  
+**_The React app will open in your browser at http://localhost:3000._**  
 
 **Here Is The Dashboard Code:**  
 [Go To The Dashboard Repo](https://github.com/Afzal14786/trading-dashboard.git)
