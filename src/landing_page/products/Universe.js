@@ -5,7 +5,7 @@ const Universe = () => {
     <>
         <div className='container' style={{marginTop : "3rem"}}>
             <div className='row'>
-                <p className='text-center' style={{fontWeight : "500", marginBottom : "3rem",color : "#424242"}} >Want to know more about our technology stack? Check out the <a href=''> Zerodha.tech blog</a>.</p>
+                <p className='text-center' style={{fontWeight : "500", marginBottom : "3rem",color : "#424242"}} >Want to know more about our technology stack? Check out the <a href='https://zerodha.tech/' target="_blank"> Zerodha.tech blog</a>.</p>
                 <h1 className='text-center' style={{marginTop : "4rem", color : "#424242", fontSize : "2.2rem"}}>The Zerodha Universe</h1>
                 <p className='text-center text-muted' style={{color : "#424242", fontWeight : "500", marginTop : "1.5rem"}} >Extend your trading and investment experience even further with our partner platforms</p>
             </div>

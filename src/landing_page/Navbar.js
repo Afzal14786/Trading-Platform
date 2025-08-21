@@ -16,7 +16,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top d-flex justify-content-between align-items-center">
+    <nav className="navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top z-30 d-flex justify-content-between align-items-center">
       <div className="container-fluid">
         {/* Logo */}
         <Link className="navbar-brand" to={"/"}>

@@ -1,6 +1,6 @@
 
 import { useLocation } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
@@ -17,8 +17,12 @@ const Footer = () => {
               {/* Support Footer Page */}
               {isSupportPage ? (
                 <>
-                  <div className='col-3 mt-1'>
-                    <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
+                  <div className='col-3 mt-1 social_icon'>
+                    <Link
+                      to={'/'}
+                    >
+                      <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
+                    </Link>
                     <h4 className="text-muted" style={{marginTop : "1.1rem", fontSize : "1.2rem", fontWeight : "500"}}><i class="fas fa-phone"></i>&nbsp; 080 47181888</h4>
                     <p className ='small mt-3 text-muted'>&copy; 2010 - 2025, Zerodha Broking Ltd. <br/> All rights reserved.</p>
                     <i class="fab fa-twitter icon-first"></i>
@@ -29,14 +33,17 @@ const Footer = () => {
                 </>
               ): (
                 <>
-                  <div className='col-3 mt-2'>
-                    <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
+                  <div className='col-3 mt-2 social_icon'>
+                    <Link
+                      to={'/'}
+                    >
+                      <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
+                    </Link>
                     <p className ='small mt-3 text-muted'>&copy; 2010 - 2025, Zerodha Broking Ltd. <br/> All rights reserved.</p>
                     <i class="fab fa-twitter icon-first"></i>
                     <i class="fab fa-facebook-square icons"></i>
                     <i class="fab fa-instagram icons"></i>
                     <i class="fab fa-linkedin-in icons"></i>
-
                     <div className='border-bottom mt-3 mb-3'></div>
                     <i class="fab fa-youtube icon-first"></i>
                     <i class="fab fa-whatsapp icons"></i>

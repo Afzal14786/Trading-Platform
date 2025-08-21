@@ -113,11 +113,6 @@ a:hover {
     border : 1px solid blue;
 }
 
-/* Navnar */
-
-/* .nav .nav:hover {
-  color : rgb(46, 146, 186);
-} */
 
 
 /* ---------- Tabs Styling ---------- */
@@ -343,6 +338,10 @@ tbody tr:nth-child(even) {
 .feature-link {
   color: #fff;
   text-decoration: underline;
+}
+
+.social_icon i {
+  cursor: pointer;
 }
 
 /* featured header */
