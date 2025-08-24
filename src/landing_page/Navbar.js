@@ -15,8 +15,10 @@ const Navbar = () => {
     else setActiveNav(""); // default
   }, [location.pathname]);
 
+  // navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top z-1030 d-flex justify-content-between align-items-center"
   return (
-    <nav className="navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top z-30 d-flex justify-content-between align-items-center">
+    <nav className="navbar navbar-expand-lg border-bottom sticky-top mx-5"
+      style={{ backgroundColor: "#FFF" }}>
       <div className="container-fluid">
         {/* Logo */}
         <Link className="navbar-brand" to={"/"}>
@@ -41,8 +43,8 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 className={`nav-link ${activeNav === "open-account" ? "active" : ""}`}
-                to="/open-account"
-                target="_blank"
+                // to={location.pathname === "/open-account" ? "#" : "/open-account"}
+                to={"/open-account"}
               >
                 Signup
               </Link>

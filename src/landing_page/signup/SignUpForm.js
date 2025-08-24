@@ -1,6 +1,17 @@
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const SignUpForm = () => {
+  const [mobile, setMobile] = useState("");
+  const navigate = useNavigate();
+
+  const handleGetOtp = () => {
+    if (mobile.length === 10) {
+      navigate("/verify-mobile", { state: { mobile } });
+    } else {
+      alert("Please enter a valid 10-digit mobile number");
+    }
+  };
   const location = useLocation();
   const isSignUpPage = location.pathname === "/signup";
 
@@ -9,7 +20,7 @@ const SignUpForm = () => {
       <div className="container">
         {isSignUpPage ? (
           <>
-            <div className="row p-3" style={{marginBottom : "7rem"}}>
+            <div className="row p-3" style={{ marginBottom: "7rem" }}>
               <div className="col">
                 <img
                   src="media/images/account_open.svg"
@@ -37,18 +48,22 @@ const SignUpForm = () => {
                   </div>
                   <input
                     type="text"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
+                    className="form-control"
                     placeholder="Enter your mobile number"
+                    value={mobile}
+                    onChange={
+                      (e) => setMobile(e.target.value.replace(/\D/g, ""))
+                    }
+                    maxLength={10}
                   />
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-primary py-3 mt-3 form-btn fw-semibold"
-                >
-                  Get OTP
-                </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary py-3 mt-3 form-btn fw-semibold"
+                    onClick={handleGetOtp}
+                  >
+                    Get OTP
+                  </button>
                 <p className="text-muted mt-4" style={{ fontSize: "15px" }}>
                   By proceeding, you agree to the Zerodha{" "}
                   <a href="#" className="terms-link">
@@ -92,15 +107,19 @@ const SignUpForm = () => {
                   </div>
                   <input
                     type="text"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
+                    className="form-control"
                     placeholder="Enter your mobile number"
+                    value={mobile}
+                    onChange={
+                      (e) => setMobile(e.target.value.replace(/\D/g, ""))
+                    }
+                    maxLength={10}
                   />
                 </div>
                 <button
                   type="button"
                   class="btn btn-primary py-3 mt-3 form-btn fw-semibold"
+                  onClick={handleGetOtp}
                 >
                   Get OTP
                 </button>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <>
-      <div className='container text-center justify-center mb-5' style={{marginTop : "3.5rem"}}>
+      <div className='container text-center justify-center mb-5 pt-5'>
         <div className='row home-hero'>
           <img src='media/images/homeHero.png'alt='Hero Image' style={{width : "65%"}} className='mb-3 w-[70%] mx-auto block'/>
           <h3 className='mt-5 home-hero-heading' style={{ fontSize : "2.7rem", color : "#424242"}}>Invest in everything</h3> 
