@@ -118,7 +118,7 @@ const SignUpForm = () => {
                 </div>
                 <button
                   type="button"
-                  class="btn btn-primary py-3 mt-3 form-btn fw-semibold"
+                  className="btn btn-primary py-3 mt-3 form-btn fw-semibold"
                   onClick={handleGetOtp}
                 >
                   Get OTP

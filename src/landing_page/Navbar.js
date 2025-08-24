@@ -6,16 +6,15 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("");
 
   useEffect(() => {
-    // Match the pathname with nav item
     if (location.pathname.includes("open-account")) setActiveNav("open-account");
     else if (location.pathname.includes("about")) setActiveNav("about");
     else if (location.pathname.includes("products")) setActiveNav("products");
     else if (location.pathname.includes("pricing")) setActiveNav("pricing");
     else if (location.pathname.includes("support")) setActiveNav("support");
-    else setActiveNav(""); // default
+    else setActiveNav("");
   }, [location.pathname]);
 
-  // navbar navbar-expand-lg navbar-light border-bottom p-3 sticky-top z-1030 d-flex justify-content-between align-items-center"
+
   return (
     <nav className="navbar navbar-expand-lg border-bottom sticky-top mx-5"
       style={{ backgroundColor: "#FFF" }}>
@@ -43,7 +42,6 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 className={`nav-link ${activeNav === "open-account" ? "active" : ""}`}
-                // to={location.pathname === "/open-account" ? "#" : "/open-account"}
                 to={"/open-account"}
               >
                 Signup
@@ -85,8 +83,6 @@ const Navbar = () => {
                 Support
               </Link>
             </li>
-
-            {/* Optional: Add a mobile menu or icon */}
             <li className="nav-item">
               <Link className="nav-link" to="#">
                 <i className="fa fa-bars" aria-hidden="true" />

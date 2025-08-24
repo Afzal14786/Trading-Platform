@@ -10,7 +10,9 @@ import Pricing from "./landing_page/pricing/PricingPage";
 import Support from "./landing_page/support/SupportPage";
 
 import VerifyMobile from "./landing_page/signup/VerifyMobile";
-
+import LeadInfo from "./landing_page/signup/LeadInfo";
+import SetPassword from "./landing_page/signup/SetPassword";
+import AccountActive from "./landing_page/AccountActive/AccountActive";
 import Home from "./landing_page/home/HomePage";
 
 export default Layout;
@@ -28,6 +30,9 @@ root.render(
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/support" element={<Support />} />
         <Route path="/verify-mobile" element={<VerifyMobile />} />
+        <Route path="/lead-info" element={<LeadInfo/>} />
+        <Route path="/set-password" element={<SetPassword/>} />
+        <Route path= "/account-active" element ={<AccountActive/>} />
       </Routes>
     </Layout>
   </Router>

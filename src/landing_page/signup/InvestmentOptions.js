@@ -3,11 +3,6 @@ import React from "react";
 const InvestmentOptions = () => {
   return (
     <>
-      {/* <div classNameName="container mt-5 mb-5">
-        <h1 classNameName="text-muted fw-semibold fs-2 text-center">
-          Investment options with Zerodha demat account
-        </h1>
-      </div> */}
 
       <div className="container my-5 mb-5">
         <h3 className="text-center fw-semibold fs-2 text-secondary">

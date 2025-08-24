@@ -40,14 +40,14 @@ const Footer = () => {
                       <img src='media/images/logo.svg' style={{width : "70%"}} alt='Logo at footer'/>
                     </Link>
                     <p className ='small mt-3 text-muted'>&copy; 2010 - 2025, Zerodha Broking Ltd. <br/> All rights reserved.</p>
-                    <i class="fab fa-twitter icon-first"></i>
-                    <i class="fab fa-facebook-square icons"></i>
-                    <i class="fab fa-instagram icons"></i>
-                    <i class="fab fa-linkedin-in icons"></i>
+                    <i className="fab fa-twitter icon-first"></i>
+                    <i className="fab fa-facebook-square icons"></i>
+                    <i className="fab fa-instagram icons"></i>
+                    <i className="fab fa-linkedin-in icons"></i>
                     <div className='border-bottom mt-3 mb-3'></div>
-                    <i class="fab fa-youtube icon-first"></i>
-                    <i class="fab fa-whatsapp icons"></i>
-                    <i class="fab fa-telegram-plane icons"></i>
+                    <i className="fab fa-youtube icon-first"></i>
+                    <i className="fab fa-whatsapp icons"></i>
+                    <i className="fab fa-telegram-plane icons"></i>
                   </div>
                 </>
               )}
