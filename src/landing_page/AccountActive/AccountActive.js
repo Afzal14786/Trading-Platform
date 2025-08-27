@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+const dashboard_url = "http://localhost:5173/login";
 
 const AccountActive = () => {
-  const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    // navigate to the dashboard and user need to login there
-    navigate("/login"); 
+    // now after signup navigate the user to dashboard,
+    window.open(dashboard_url, "_blank");
   };
 
   return (
