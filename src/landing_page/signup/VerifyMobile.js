@@ -1,22 +1,110 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import BottomBar from "./BottomBar";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth } from "../firebase";
+import axios from "axios";
 
 const VerifyMobile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const mobile = state?.mobile || "";
+  let mobile = state?.mobile || "";
   const [otp, setOtp] = useState("");
+  const [confirmationResult, setConfirmationResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  if (mobile && !mobile.startsWith("+")) {
+    mobile = `+91${mobile}`;
+  }
+  const recaptchaContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (!mobile) {
+      navigate("/signup");
+      return;
+    }
+
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: () => {},
+          "expired-callback": () => {
+            setError("reCAPTCHA expired. Please reload the page.");
+          },
+        }
+      );
+    }
+
+    sendOtp();
+
+    return () => {
+      // Clean reCAPTCHA only if needed
+      window.recaptchaVerifier = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mobile, navigate]);
+
+  const sendOtp = () => {
+    const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, mobile, appVerifier)
+      .then((result) => {
+        setConfirmationResult(result);
+        alert("An OTP has been sent to your mobile number");
+      })
+      .catch((err) => {
+        console.error(`Error while sending OTP: ${err}`);
+        setError("Error sending OTP. Please check the number and try again.");
+      });
+  };
 
   const handleOtpChange = (e) => {
     const onlyDigits = e.target.value.replace(/\D/g, "");
     if (onlyDigits.length <= 6) setOtp(onlyDigits);
   };
 
-  const handleContinue = () => {
-    if (otp.length === 6) {
-      console.log("Verify OTP:", otp);
-      navigate("/lead-info", { state: { mobile } });
+  const handleContinue = async () => {
+    if (otp.length !== 6) {
+      setError("Please enter a 6-digit OTP");
+      return;
+    }
+
+    if (!confirmationResult) {
+      setError("Something went wrong, please try again later");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      
+      const result = await confirmationResult.confirm(otp);
+      const user = result.user;
+      const idToken = await user.getIdToken();
+
+      const response = await axios.post(
+        "http://localhost:5174/api/v1/user/register/verify-mobile",
+        {
+          idToken,
+          phone: user.phoneNumber,
+        }
+      );
+
+      if (response.data.success) {
+        alert("Phone verified successfully!");
+        navigate("/lead-info", { state: { mobile: user.phoneNumber } });
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      console.error(`Error during OTP verification: ${error}`);
+      setError("Invalid or expired OTP");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,11 +123,12 @@ const VerifyMobile = () => {
           <div className="col-md-6">
             <h2 className="mb-2">Mobile OTP</h2>
             <p className="text-muted">
-              Sent to <strong>+91 {mobile}</strong>{" "}
-              <a href="#" className="ms-1">
+              Sent to <strong>{mobile}</strong>{" "}
+              <a href="/signup" className="ms-1">
                 (change)
               </a>
             </p>
+            {error && <p className="text-danger">{error}</p>}
 
             <div className="mt-3" style={{ maxWidth: 380 }}>
               <div className="input-group">
@@ -66,11 +155,25 @@ const VerifyMobile = () => {
             <p className="text-muted mt-3" style={{ fontSize: 14 }}>
               Didn’t receive OTP?
               <br />
-              Resend via <a href="#">SMS</a> / <a href="#">Whatsapp</a>
+              {loading ? (
+                <span>Verifying OTP...</span>
+              ) : (
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    sendOtp();
+                  }}
+                >
+                  Resend via SMS
+                </a>
+              )}
             </p>
           </div>
         </div>
       </div>
+
+      <div ref={recaptchaContainerRef} id="recaptcha-container" style={{ display: "none" }}></div>
 
       <BottomBar enabled={otp.length === 6} onContinue={handleContinue} />
     </>
