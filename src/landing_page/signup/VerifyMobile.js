@@ -13,11 +13,32 @@ const VerifyMobile = () => {
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isRecaptchaReady, setIsRecaptchaReady] = useState(false);
 
   if (mobile && !mobile.startsWith("+")) {
     mobile = `+91${mobile}`;
   }
   const recaptchaContainerRef = useRef(null);
+
+  const sendOtp = () => {
+    const appVerifier = window.recaptchaVerifier;
+    if (!appVerifier) {
+      toast.error("Recaptcha is not ready. Please try again in a moment.");
+      return;
+    }
+
+    signInWithPhoneNumber(auth, mobile, appVerifier)
+      .then((result) => {
+        setConfirmationResult(result);
+        toast.success(`An OTP sent to your mobile number.`);
+      })
+      .catch((err) => {
+        console.error(`Error while sending OTP: ${err}`);
+        toast.error(
+          "Error sending OTP. Please check the number and try again."
+        );
+      });
+  };
 
   useEffect(() => {
     if (!mobile) {
@@ -32,31 +53,31 @@ const VerifyMobile = () => {
         "recaptcha-container",
         {
           size: "invisible",
-          callback: () => {},
+          callback: () => {
+            setIsRecaptchaReady(true);
+          },
           "expired-callback": () => {
             toast.error("reCAPTCHA expired. Please reload the page.");
           },
         }
       );
+
+      window.recaptchaVerifier.verify();
     }
-    sendOtp();
+
     return () => {
-      window.recaptchaVerifier = null;
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
     };
   }, [mobile, navigate]);
 
-  const sendOtp = () => {
-    const appVerifier = window.recaptchaVerifier;
-    signInWithPhoneNumber(auth, mobile, appVerifier)
-      .then((result) => {
-        setConfirmationResult(result);
-        toast.success(`An OTP sent to your mobile number.`);
-      })
-      .catch((err) => {
-        console.error(`Error while sending OTP: ${err}`);
-        toast.error("Error sending OTP. Please check the number and try again.");
-      });
-  };
+  useEffect(() => {
+    if (isRecaptchaReady) {
+      sendOtp();
+    }
+  }, [isRecaptchaReady]);
 
   const handleOtpChange = (e) => {
     const onlyDigits = e.target.value.replace(/\D/g, "");
@@ -85,13 +106,22 @@ const VerifyMobile = () => {
         "http://localhost:5174/api/v1/user/register/verify-mobile",
         {
           idToken,
-          phone: user.phoneNumber,
         }
       );
 
       if (response.data.success) {
-        toast.success("Phone verified successfully!");
-        navigate("/lead-info", { state: { mobile: user.phoneNumber } });
+        if (response.data.userExists) {
+          toast.success(`Account already exist with this number.`);
+          navigate("/account-active", {
+            state: {
+              userData: response.data.data.user,
+              tokens: response.data.data.tokens,
+            }
+          });
+        } else {
+          toast.success("Phone verified successfully!");
+          navigate("/lead-info", { state: { phone: user.phoneNumber } });
+        }
       } else {
         toast.error(response.data.message);
       }
@@ -166,14 +196,18 @@ const VerifyMobile = () => {
           </div>
         </div>
       </div>
- 
+
       <div
         ref={recaptchaContainerRef}
         id="recaptcha-container"
         style={{ display: "none" }}
       ></div>
 
-      <BottomBar enabled={otp.length === 6} onContinue={handleContinue} buttonText={loading ? "Loading..." : "Continue"}/>
+      <BottomBar
+        enabled={otp.length === 6}
+        onContinue={handleContinue}
+        buttonText={loading ? "Loading..." : "Continue"}
+      />
     </>
   );
 };

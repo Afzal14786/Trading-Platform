@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import {toast} from "react-toastify"
 
 const SignUpForm = () => {
   const [mobile, setMobile] = useState("");
@@ -13,7 +14,7 @@ const SignUpForm = () => {
     if (mobile && mobile.length >= 10) {
       navigate("/verify-mobile", { state: { mobile: `+${mobile}` } });
     } else {
-      alert("Please enter a valid mobile number");
+      toast.error("Please enter a valid mobile number");
     }
   };
 

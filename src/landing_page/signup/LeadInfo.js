@@ -16,7 +16,7 @@ const LeadInfo = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { phone } = location.state || {}; // getting the phone n umber form previous state / means the page
+  const { phone } = location.state || {};
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -61,7 +61,7 @@ const LeadInfo = () => {
 
       if (response.data.success) {
         toast.success(`OTP verified successfully`);
-        navigate("/set-password");
+        navigate("/set-password", {state: {phone}});
       } else {
         toast.error(response.data.message);
       }

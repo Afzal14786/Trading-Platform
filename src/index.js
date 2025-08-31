@@ -14,7 +14,7 @@ import LeadInfo from "./landing_page/signup/LeadInfo";
 import SetPassword from "./landing_page/signup/SetPassword";
 import AccountActive from "./landing_page/AccountActive/AccountActive";
 import Home from "./landing_page/home/HomePage";
-
+import NotFoundPage from "./NotFoundPage";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,6 +37,7 @@ root.render(
         <Route path="/lead-info" element={<LeadInfo/>} />
         <Route path="/set-password" element={<SetPassword/>} />
         <Route path= "/account-active" element ={<AccountActive/>} />
+        <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </Layout>
   </Router>
