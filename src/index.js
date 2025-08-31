@@ -15,11 +15,15 @@ import SetPassword from "./landing_page/signup/SetPassword";
 import AccountActive from "./landing_page/AccountActive/AccountActive";
 import Home from "./landing_page/home/HomePage";
 
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default Layout;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
+    <ToastContainer position="top-right"/>
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />

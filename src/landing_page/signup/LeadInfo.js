@@ -1,13 +1,22 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BottomBar from "./BottomBar";
+import {toast} from "react-toastify";
+import axios from "axios";
+
+const backend_url = "http://localhost:5174/api/v1/user/register/lead-info";
 
 const LeadInfo = () => {
   const [step, setStep] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState(true);
   const [otp, setOtp] = useState("");
+  const [emailValid, setEmailValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { phone } = location.state || {}; // getting the phone n umber form previous state / means the page
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
@@ -21,25 +30,60 @@ const LeadInfo = () => {
     if (onlyDigits.length <= 6) setOtp(onlyDigits);
   };
 
-  const navigate = useNavigate();
+  const sendOtp = async () => {
+    setIsLoading(true);
+    try {
+      // performing the setp 1
+      await axios.post(backend_url, {
+        step: "sendOtp",
+        phone,
+        name,
+        email,
+      });
+
+      setStep(2);
+      toast.success(`OTP sent to your email: ${email}`);
+    } catch (error) {
+      toast.error(error.response?.data?.message || `Failed to send OTP . Please try again`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const verifyOtp = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(backend_url, {
+        step: "verifyOtp",
+        email,
+        otp,
+      });
+
+      if (response.data.success) {
+        toast.success(`OTP verified successfully`);
+        navigate("/set-password");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to verify OTP. Please try again");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleContinue = () => {
     if (step === 1) {
       if (!emailValid) {
-        alert("Please enter a valid email address");
+        toast.error("Please enter a valid email address");
         return;
       }
-
-      console.log("Sending OTP to email:", email);
-      setStep(2);
+      sendOtp();
     } else if (step === 2) {
       if (otp.length === 6) {
-        // if otp is correct then move to enter password page, where user need to set-up strong password
-        navigate('/set-password');
-        console.log(`OTP Clicked ${otp}`);
+        verifyOtp();
       } else {
-        // if wrong otp then give a tooltip error
-        alert("Please enter a valid 6-digit OTP");
+        toast.error("Please Enter A Valid OTP");
       }
     }
   };
@@ -162,7 +206,10 @@ const LeadInfo = () => {
               </div>
 
               <p className="text-muted mt-3" style={{ fontSize: 14 }}>
-                Didn’t receive OTP? <a href="#">Resend</a>
+                Didn’t receive OTP?{" "}
+                <a href="#" onClick={sendOtp}>
+                  Resend
+                </a>
               </p>
             </>
           )}
@@ -172,7 +219,7 @@ const LeadInfo = () => {
       <BottomBar
         enabled={isEnabled}
         onContinue={handleContinue}
-        buttonText="Continue"
+        buttonText={isLoading ? "Loading..." : "Continue"}
       />
     </div>
   );

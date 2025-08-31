@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import BottomBar from "./BottomBar";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const VerifyMobile = () => {
@@ -12,7 +13,6 @@ const VerifyMobile = () => {
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   if (mobile && !mobile.startsWith("+")) {
     mobile = `+91${mobile}`;
@@ -22,6 +22,7 @@ const VerifyMobile = () => {
   useEffect(() => {
     if (!mobile) {
       navigate("/signup");
+      toast.error("Please enter a valid number");
       return;
     }
 
@@ -33,19 +34,15 @@ const VerifyMobile = () => {
           size: "invisible",
           callback: () => {},
           "expired-callback": () => {
-            setError("reCAPTCHA expired. Please reload the page.");
+            toast.error("reCAPTCHA expired. Please reload the page.");
           },
         }
       );
     }
-
     sendOtp();
-
     return () => {
-      // Clean reCAPTCHA only if needed
       window.recaptchaVerifier = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mobile, navigate]);
 
   const sendOtp = () => {
@@ -53,11 +50,11 @@ const VerifyMobile = () => {
     signInWithPhoneNumber(auth, mobile, appVerifier)
       .then((result) => {
         setConfirmationResult(result);
-        alert("An OTP has been sent to your mobile number");
+        toast.success(`An OTP sent to your mobile number.`);
       })
       .catch((err) => {
         console.error(`Error while sending OTP: ${err}`);
-        setError("Error sending OTP. Please check the number and try again.");
+        toast.error("Error sending OTP. Please check the number and try again.");
       });
   };
 
@@ -68,20 +65,18 @@ const VerifyMobile = () => {
 
   const handleContinue = async () => {
     if (otp.length !== 6) {
-      setError("Please enter a 6-digit OTP");
+      toast.error("Please enter a 6-digit OTP");
       return;
     }
 
     if (!confirmationResult) {
-      setError("Something went wrong, please try again later");
+      toast.error("Something went wrong, please try again later");
       return;
     }
 
     setLoading(true);
-    setError("");
 
     try {
-      
       const result = await confirmationResult.confirm(otp);
       const user = result.user;
       const idToken = await user.getIdToken();
@@ -95,14 +90,14 @@ const VerifyMobile = () => {
       );
 
       if (response.data.success) {
-        alert("Phone verified successfully!");
+        toast.success("Phone verified successfully!");
         navigate("/lead-info", { state: { mobile: user.phoneNumber } });
       } else {
-        setError(response.data.message);
+        toast.error(response.data.message);
       }
-    } catch (error) {
-      console.error(`Error during OTP verification: ${error}`);
-      setError("Invalid or expired OTP");
+    } catch (err) {
+      console.error(`Error during OTP verification: ${err}`);
+      toast.error("Invalid or expired OTP");
     } finally {
       setLoading(false);
     }
@@ -128,7 +123,6 @@ const VerifyMobile = () => {
                 (change)
               </a>
             </p>
-            {error && <p className="text-danger">{error}</p>}
 
             <div className="mt-3" style={{ maxWidth: 380 }}>
               <div className="input-group">
@@ -172,10 +166,14 @@ const VerifyMobile = () => {
           </div>
         </div>
       </div>
+ 
+      <div
+        ref={recaptchaContainerRef}
+        id="recaptcha-container"
+        style={{ display: "none" }}
+      ></div>
 
-      <div ref={recaptchaContainerRef} id="recaptcha-container" style={{ display: "none" }}></div>
-
-      <BottomBar enabled={otp.length === 6} onContinue={handleContinue} />
+      <BottomBar enabled={otp.length === 6} onContinue={handleContinue} buttonText={loading ? "Loading..." : "Continue"}/>
     </>
   );
 };
