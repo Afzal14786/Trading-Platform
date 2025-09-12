@@ -104,7 +104,7 @@ Follow the following lines for running the project locally.
 
 1. **Clone The Repository**
 ```
-https://github.com/Afzal14786/Trading-Platform.git
+git clone https://github.com/Afzal14786/Trading-Platform.git
 cd Trading-Platform
 ```
 
