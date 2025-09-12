@@ -23,7 +23,7 @@ const AccountActive = () => {
   }, [location.state, navigate]);
 
   const handleLoginClick = () => {
-    window.open(`${process.env.REACT_APP_DASHBOARD_API}/login`, "_blank");
+    window.open(`${process.env.REACT_APP_DASHBOARD_URL}/login`, "_blank");
   };
 
   if (isLoading) {

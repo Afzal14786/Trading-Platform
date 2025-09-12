@@ -58,7 +58,7 @@ const SetPassword = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/user/register/set-password`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register/set-password`, {
         phone,
         password,
       });
