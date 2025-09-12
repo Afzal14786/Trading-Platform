@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const dashboard_url = "http://localhost:5173/login";
 
 const AccountActive = () => {
   const [userData, setUserData] = useState(null);
@@ -24,7 +23,7 @@ const AccountActive = () => {
   }, [location.state, navigate]);
 
   const handleLoginClick = () => {
-    window.open(dashboard_url, "_blank");
+    window.open(`${process.env.REACT_APP_DASHBOARD_API}/login`, "_blank");
   };
 
   if (isLoading) {

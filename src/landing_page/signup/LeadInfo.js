@@ -4,7 +4,6 @@ import BottomBar from "./BottomBar";
 import {toast} from "react-toastify";
 import axios from "axios";
 
-const backend_url = "http://localhost:5174/api/v1/user/register/lead-info";
 
 const LeadInfo = () => {
   const [step, setStep] = useState(1);
@@ -34,7 +33,7 @@ const LeadInfo = () => {
     setIsLoading(true);
     try {
       // performing the setp 1
-      await axios.post(backend_url, {
+      await axios.post(`${process.env.REACT_APP_BACKEND_API}/user/register/lead-info`, {
         step: "sendOtp",
         phone,
         name,
@@ -53,7 +52,7 @@ const LeadInfo = () => {
   const verifyOtp = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(backend_url, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/user/register/lead-info`, {
         step: "verifyOtp",
         email,
         otp,
