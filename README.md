@@ -216,7 +216,7 @@ If all the test phone numbers are already registered and you're unable to create
 You can contact me via:
 
 - 📧 **Email :** [mdafzal14777@gmail.com](mailto:mdafzal14777@gmail.com)  
-- 📸 **Instagram :** [@afzal14786](https://instagram.com/afzal14786)
+- 📸 **Instagram :** [@mdafzal14786](https://instagram.com/afzal14786)
 
 ---
 
@@ -227,10 +227,10 @@ If you found this project helpful, informative, or fun to work with:
 - Give it a **🌟 star** on [GitHub](https://github.com/afzal14786)  
 - **Follow me** for more cool projects and updates:
   - 🐙 [GitHub](https://github.com/afzal14786)
-  - 🔗 [LinkedIn](https://linkedin.com/afzal14786)
-  - 📸 [Instagram](https://instagram.com/afzal14786)
-  - 📘 [Facebook](https://facebook.com/afzal14786)
-  - 💼 [LinkedIn](https://www.linkedin.com/in/afzal14786)
+  - 🔗 [LinkedIn](https://linkedin.com/mdafzal14786)
+  - 📸 [Instagram](https://instagram.com/mdafzal14786)
+  - 📘 [Facebook](https://facebook.com/mdafzal14786)
+  - 💼 [Linktree](https://linktr.ee/mdafzal14786)
 
 
 ---
