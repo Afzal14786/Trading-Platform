@@ -33,7 +33,7 @@ const LeadInfo = () => {
     setIsLoading(true);
     try {
       // performing the setp 1
-      await axios.post(`${process.env.REACT_APP_BACKEND_API}/user/register/lead-info`, {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register/lead-info`, {
         step: "sendOtp",
         phone,
         name,
@@ -52,7 +52,7 @@ const LeadInfo = () => {
   const verifyOtp = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/user/register/lead-info`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register/lead-info`, {
         step: "verifyOtp",
         email,
         otp,

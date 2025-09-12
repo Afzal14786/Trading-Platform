@@ -103,7 +103,7 @@ const VerifyMobile = () => {
       const idToken = await user.getIdToken();
 
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/user/register/verify-mobile`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register/verify-mobile`,
         {
           idToken,
         }
