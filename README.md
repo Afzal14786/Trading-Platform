@@ -67,7 +67,7 @@ This project is built with a modern and comprehensive full-stack architecture:
 -   **Redis DB :**  An in-memory data store used for caching and managing short-lived data, such as OTPs and temporary session tokens, significantly improving authentication speed and overall performance.  
 
 ### 📂 Frontend Project Structure  
-
+```
 📁 trading-platform
 ├── 📁 node_modules
 ├── 📁 public
@@ -97,6 +97,7 @@ This project is built with a modern and comprehensive full-stack architecture:
 ├── package.json
 ├── package-lock.json
 └── README.md
+```
 
 ### 🚀 Getting Started 
 Follow the following lines for running the project locally.  
@@ -184,6 +185,8 @@ To ensure you can still **test the phone authentication flow**, I’ve configure
 | 8    | +918888777666    | 666777  | ✅ Available   |
 | 9    | +919999000111    | 777888  | ✅ Available   |
 | 10    | +919955118287    | 123456  | ❌ Used   |  
+
+> Use only `10 digit number`, exculde `+91`
 
 ### 📋 How to Use the Test Phone Authentication  
 To test the phone authentication feature in the signup flow, follow these steps:  
