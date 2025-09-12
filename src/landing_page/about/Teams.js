@@ -1,4 +1,8 @@
-import React from "react";
+/**
+ * @description Team.js
+ * 
+ *  This page contain all the information regarding the team
+ */
 
 const Teams = () => {
   return (
@@ -12,14 +16,7 @@ const Teams = () => {
             People
           </h3>
 
-          {/* <div className='col-6 d-flex flex-column align-items-center justify-content-center mt-5' style={{marginLeft : "15px"}}>
-                    <img src='media/images/nithinKamath.jpg' className='img-fluid rounded-circle float-right' style={{width : "50%"}} alt='ceo-image'/>
-                    <p className='mt-3' style={{fontWeight : "500", fontSize : "1.5rem", lineHeight : "1.3", letterSpacing : "1.2"}}>Nithin Kamath</p>
-                    <p className='text-muted' style={{fontSize : "17px", fontWeight : "500"}}>Founder, CEO</p>
-                </div> */}
-
           <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mt-5">
-            {/* Removed float-right from image as it conflicts with flexbox centering */}
             <img
               src="media/images/nithinKamath.jpg"
               className="img-fluid rounded-circle"
