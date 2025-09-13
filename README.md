@@ -4,6 +4,8 @@ FinVista is a meticulously crafted web application that emulates the sophisticat
 
 ![Project Banner](./public/assets/Banner_Zerodha.png)
 
+**_Before visiting the site, kindly go through the important section : [click here](#️-important-note-on-phone-authentication-testing)_**  
+
 **Live Demo:** [FinVista](https://finvista-trading-frontend.onrender.com)
 
 
